@@ -29,5 +29,76 @@
             </ul>
         </div>
     </nav>
+    
+    <div class="card"><!--product-->
+        <div class="container d-flex justify-content-between card-header">
+            <div  class="w-100 d-flex justify-content-between align-items-center p-3">
+                <div>
+                    <h1>E-Commerce</h1>
+                </div>
+                <div class="rel">
+                    <div class="p-2 cart-items-holder">
+                        <i style="font-size: 25px;" class="fa fa-shopping-cart fa-5x"></i>
+                        <span id="cart_count">{{cart_count}}</span>
+                    </div>
+                    <div class="cart-items">
+                        <div id="cart-items-here">
+                            {% for i in classes %}
+                            <div id="item_box_{{i.id}}" class="delete-cart-items-holder">
+                                <div>
+                                    <img class="cart-img" src="{{i.image}}" alt=""> {{ i.name }} {{i.qty}} x {{ i.price }} = {{i.total}}
+                                </div>
+                                <div onclick="deleteCartItem(this);" id="{{i.id}}" class="delete-holder">
+                                    <i class='fa fa-close'></i>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="w-100 text-center">
+                            <button class="add-to-cart btn btn-primary btn-sm">Checkout Now!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="d-flex mt-5 flex-wrap row">
+                    {% for i in products %}
+                    <div class="col-sm-3 text-center card">
+                        <div class="card-header">
+                            <h5 id="product_name_{{i.id}}" class="my-3">{{i.name}}</h5>
+                        </div>
+                        <div class="card-body" style="max-width: 250px;height: 300px;overflow: hidden;margin: auto;">
+                            {% for x in i.product_images.all %}
+                                {% if forloop.counter <= 1 %}
+                                    <img class="w-100 h-100" style="object-fit:contain;" src="{{ x.image.url }}" alt="">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div>
+                            <h3 class="my-2" style="color: crimson;">Php {{i.price}}</h3>
+                            <div class="my-3">
+                                <label for="quantity">Quantity</label>
+                                <input id="qty_{{i.id}}" name="quantity" style="width: 50px;" type="number" min="1"  max="50" value="1" class="inp-qty text-center">
+                                <button id="{{i.id}}" class="add-to-cart btn btn-primary btn-sm">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="add_to_cart_loading_icon" style="z-index: 0;">
+        <div class="w-100 d-flex justify-content-center align-items-center h-100 flex-column">
+            <div class="loadingio-eclipse"><div class="ldio-rpinwye8j0b"><div></div></div></div>
+            <div id="after_load_box" style="background-color: whitesmoke;padding: 50px;border-radius: 10px;z-index: 10;">
+                <button id="btn_continue" class="btn btn-info">Continue</button>
+                <button id="btn_checkout" class="btn btn-primary">Checkout Now!</button>
+                <button id="btn_loginrequired" class="btn btn-primary">Login is Required!</button>
+            </div>
+        </div>
+    </div> 
 </body>
 </html>
