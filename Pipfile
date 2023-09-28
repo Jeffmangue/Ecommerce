@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+altgraph = "==0.17.3"
+asgiref = "==3.7.2"
+certifi = "==2023.7.22"
+distlib = "==0.3.7"
+django = "==4.2.5"
+filelock = "==3.12.3"
+pefile = "==2023.2.7"
+pillow = "==9.5.0"
+pipenv = "==2023.9.1"
+platformdirs = "==3.10.0"
+pyinstaller = "==5.13.0"
+pyinstaller-hooks-contrib = "==2023.3"
+pywin32-ctypes = "==0.2.1"
+sqlparse = "==0.4.4"
+tzdata = "==2023.3"
+virtualenv = "==20.24.4"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
