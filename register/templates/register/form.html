@@ -1,0 +1,142 @@
+<form action="" method="POST" class="d-flex flex-wrap">
+    {% csrf_token %}
+    <div class="container-fluid">
+      <div class="mb-3 mt-3">
+        {{ form.errors }}
+      </div>
+      <div class="row my-3">
+        <div class="col-sm-4">
+          <label for="first_name">First name:</label>
+          <input required type="text" class="form-control" id="first_name" placeholder="First name" name="first_name">
+        </div>
+        <div class="col-sm-4">
+          <label for="first_name">Last name:</label>
+          <input required type="text" class="form-control" id="last_name" placeholder="Last name" name="last_name">
+        </div>
+        <div class="col-sm-4">
+          <label class="form-label">Select age group:</label>
+          <select name="age_group" class="form-select">
+              <option selected value=""></option>
+              <option value="CYA">CYA</option>
+              <option value="CASWYP">CASWYP</option>
+              <option value="TRUEYOKE">TRUEYOKE</option>
+              <option value="BABY">BABY</option>
+              <option value="KID">KID</option>
+              <option value="VISITOR">VISITOR</option>
+          </select>
+        </div>
+        <div class="col-sm-4 my-3">
+          <label for="lh">Select lighthouse #:</label>
+          <select name="lh" id="lh" class="form-select">
+            <option selected value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+        </div>
+        <div class="col-sm-4 my-3">
+          <label for="">Date:</label>
+          <input required type="text" class="form-control" id="form_date" name="date" autocomplete="off">
+        </div>
+        <div class="col-sm-4 d-flex flex-wrap align-content-end my-3">
+          <button type="button" class="btn btn-link p-0 pb-2" data-bs-toggle="collapse" data-bs-target="#demo">More fields: (optional)</button>
+        </div>
+      </div>
+      <div id="demo" class="row collapse my-3">
+        <div class="col-sm-4">
+          <label for="invited_by">Invited by:</label>
+          <input type="text" class="form-control" id="invited_by" placeholder="Invited by" name="invited_by">
+        </div>
+        <div class="col-sm-4">
+          <label for="username" class="form-label">Contact number</label>
+          <input type="number" class="form-control" placeholder="Enter contact number" name="contact_number">
+        </div>
+        <div class="col-sm-4">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" placeholder="Enter email" name="email">
+        </div>
+        <div class="col-sm-8">
+          <label for="lname" class="form-label my-3">Address:</label>
+          <textarea name="address" id="" cols="30" rows="2" class="form-control"></textarea>
+        </div>
+        <div class="col-sm-4 my-3">
+          <label for="type_of_service" class="form-label">Please Select:</label>
+          <select name="type_of_service" class="form-select form-control">
+              <option selected value=""></option>
+              <option value="Sunday Morning">Sunday Morning</option>
+              <option value="Sunday Evening">Sunder Evening</option>
+              <option value="OBS">OBS</option>
+              <option value="Doctrine Class">Doctrine Class</option>
+              <option value="LEDIC">LEDIC</option>
+              <option value="Prayer Meeting">Prayer Meeting</option>
+              <option value="Swarming">Swarming</option>
+          </select>
+        </div>
+      </div>
+      <div class="row my-3">
+        {% if what_to_hide_at_form == "nothing" %}
+        <div class="col-sm-4">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+        </div>
+        <div class="col-sm-4">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password1" placeholder="Password" required>
+        </div>
+        <div class="col-sm-4">
+          <label for="pwd">Confirm password:</label>
+          <input type="password" class="form-control" id="pwd" name="password2" placeholder="Password" required>
+        </div>
+        <div class="col-sm-12 my-3">
+          Already have account?
+          <a href="{% url 'login' %}">Login</a>
+        </div>
+        <div class="col-sm-12 my-3">
+          <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+          <!-- online2 for lbbccainta.com -->
+          <div class="g-recaptcha" data-sitekey="6Lei3AsiAAAAACYQDqBtZlZ67HYkI1LI2ZQUVZFw"></div> 
+          <!-- offline -->
+          <!-- <div class="g-recaptcha" data-sitekey="6LdwuOgkAAAAAKg42Y0M_6_YwzdXsMPeaKWKUSS8"></div>  -->
+          <button id="reg_submit_btn" type="submit" class="btn btn-dark">Register</button>
+        </div>
+        {% else %}
+        <div class="col-sm-12">
+          <button id="reg_submit_btn" type="submit" class="btn btn-primary mt-3">Submit</button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+</form>
+e="text" class="form-control" id="username" placeholder="Username" name="username" required>
+        </div>
+        <div class="col-sm-4">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password1" placeholder="Password" required>
+        </div>
+        <div class="col-sm-4">
+          <label for="pwd">Confirm password:</label>
+          <input type="password" class="form-control" id="pwd" name="password2" placeholder="Password" required>
+        </div>
+        <div class="col-sm-12 my-3">
+          Already have account?
+          <a href="{% url 'login' %}">Login</a>
+        </div>
+        <div class="col-sm-12 my-3">
+          <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+          <!-- online2 for lbbccainta.com -->
+          <div class="g-recaptcha" data-sitekey="6Lei3AsiAAAAACYQDqBtZlZ67HYkI1LI2ZQUVZFw"></div> 
+          <!-- offline -->
+          <!-- <div class="g-recaptcha" data-sitekey="6LdwuOgkAAAAAKg42Y0M_6_YwzdXsMPeaKWKUSS8"></div>  -->
+          <button id="reg_submit_btn" type="submit" class="btn btn-dark">Register</button>
+        </div>
+        {% else %}
+        <div class="col-sm-12">
+          <button id="reg_submit_btn" type="submit" class="btn btn-primary mt-3">Submit</button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+</form>

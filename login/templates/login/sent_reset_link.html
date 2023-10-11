@@ -1,0 +1,30 @@
+{% extends 'login/index.html' %} 
+{% block body %} 
+{% load static %}
+<div class="h-100 d-grid place-center sign_in">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-6 min-h180 d-grid place-center">
+        {% include 'lbbccainta/parts/slider.html' %}
+      </div>
+      <div class="col-sm-6 rel p-0">
+        <div class="w-100 h-100 p-3">
+          <div class="login-logo text-center">
+            <div class="profile-img-lg shadow-2 m-auto">
+              <img alt="Profile" class="w-100 h-100 cover rounded-circle" height="100" src="/media/logo.jpg" width="100">
+            </div>
+             <h2>Reset Password!</h2>
+             <div class="password-box"><h6>Reset password link <br> successfully sent. <br> Please check your email</h6></div>
+          </div>
+          <div class="text-center w-100 mt-5">
+            <p>Already have an account?<a class="text-decoration-none" href="{% url 'login' %}"><span class="fw6">&nbsp;&nbsp;Sign&nbsp;In</span></a></p>
+          </div>
+          <div class="text-center w-100">
+            <p>Don't have an account yet?<a class="text-decoration-none" href="{% url 'register' %}"><span class="fw6">&nbsp;&nbsp;Sign&nbsp;Up</span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

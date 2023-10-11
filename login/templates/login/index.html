@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lbbc cainta">
+  <meta name="author" content="Noe Gayafranca">
+  <title>Sign In</title>
+  {% load static %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preconnect stylesheet">
+  
+ 
+  <link rel="stylesheet" href="{% static 'base/bootstrap.css' %}">
+  
+  <style>
+    {% include 'base/parts-css/lbbc-cainta-settings.css' %}
+  </style>
+</head>
+<body>
+
+{% block body %}
+<div class="h-100 d-grid place-center sign_in">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-6 d-grid place-center">
+        {% include 'base/parts/slider.html' %}
+      </div>
+      <div class="col-sm-6 min-h500 rel p-0">
+        <div class="w-100 h-100 p-3">
+          <div class="login-logo text-center">
+            <div class="profile-img-lg shadow-2 m-auto">
+              <img alt="Profile" class="h-100 w-100 cover rounded-circle" height="100" src="/media/logo.jpg" width="100">
+             </div>
+             <h2>Hello Again!</h2>
+             <form action="" method="post">
+              {% csrf_token %}
+                <div class="form-group m-auto mt-5 max-w300">
+                  {% if messages %}
+                  <ul class="msg-from-server">
+                    {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  <div class="form-floating mb-3">
+                    <input name="username" type="text" class="form-control" id="floatingInput" placeholder="Username">
+                    <label for="floatingInput">Username</label>
+                  </div>
+                  <div class="form-floating">
+                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="text-right">
+                    <p><a class="text-decoration-none" href="{% url 'reset_password' %}"><span class="fw6">Forgot Password?</span></a></p>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+                    <button class="mt-3 btn btn-lg btn-1 mb-0" type="submit">Sign In</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+          <div class="text-center w-100 mt-5">
+            <p>Don't have an account yet?<a class="text-decoration-none" href=""><span class="fw6">&nbsp;&nbsp;Sign&nbsp;Up</span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+<script src="{% static 'base/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'base/jquery.min.js' %}"></script>
+<script src="{% static 'base/icons.js' %}"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#demo').carousel();
+    setInterval(function() {
+      $('#demo').carousel('next');
+    }, 3000);
+  });
+</script>
+</body>
+</html>

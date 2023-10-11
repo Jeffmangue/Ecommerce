@@ -1,0 +1,24 @@
+
+{% extends 'index/index.html' %} 
+{% block body %} 
+{% load static %}
+<div class="box-392 shadow-2 m-auto center-v-h flex-row flex-column py-5 mt-4">
+<form action="" method="POST" class="center-v-h flex-row flex-column">
+  {% csrf_token %}
+      <div class="center-h-v p-3 fs-24 font-mont">Login</div>
+      <div class="center-h-v p-3">
+        <input type="text" placeholder="Email" class="p-1 font-mont fs-16" />
+      </div>
+      <div class="center-h-v p-3">
+        <input type="text" placeholder="Password" class="p-1 font-mont fs-16" />
+      </div>
+      <div class="center-h-v p-3">
+        <p class="p-1 font-mont fs-14">Don't have an account?<a href="{% url 'register' %}">Login</a></p>
+      </div>
+      <div class="center-h-v p-3">
+        <button type="button" class="btn btn-dark">Login</button>
+      </div>
+</form>
+</div>
+{% endblock body %}
+
