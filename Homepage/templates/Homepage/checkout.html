@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+
+<div class="d-flex nav-current-subitem">
+    <style>
+        .td-h{ height: 100px;display: flex;justify-content: center;align-items: center;}
+    </style>
+    <div class="container">
+        <div class="tab-pane w-100 active" id="my-cart-items">
+            <h1 class="px20 mt-3">Checkout</h1>
+            <div class="w-100 px20">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Product images</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            {% for info in classes %}
+                            <tr text-center" id="{{ info.id }}" data-bs-target="#info_modal" data-bs-toggle="modal">
+                                <td><div class="td-h"><img style="width: 70px;" src="{{info.image}}" alt=""></div></td>
+                                <td><div class="td-h">{{info.name}}</div></td>
+                                <td><div class="td-h">{{info.description}}</div></td>
+                                <td><div class="td-h">{{info.price}}</div></td>
+                                <td><div class="td-h">{{info.qty}}</div></td>
+                                <td><div class="td-h">{{info.total}}</div></td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="text-center">
+                                <td colspan="4"></td>
+                                <td><div class="td-h"><strong>Subtotal:</strong></div></td>
+                                <td style="font-weight: bold;"><div id="subtotal" class="td-h">{{total_}}</div></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td colspan="5">
+                                    <div class="td-h flex-column p-3">
+                                        <div style="padding-top: 30px;"><h5>Select payment method</h5></div>
+                                        <div class="d-flex">
+                                            <div class="p-3">
+                                                <input value="gcash" checked type="radio" name="paymentMethod" id="gcash"><label for="gcash">GCASH</label>
+                                            </div>
+                                            <div class="p-3">
+                                                <input value="cod" type="radio" name="paymentMethod" id="cod"><label for="cod">CASH ON DELIVERY</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-5"><button id="btn_checkout" class="btn btn-primary">Checkout</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+$('#btn_checkout').click(function(){
+    var pm = $('input[name="paymentMethod"]:checked').val();
+    var id = ""
+    var keyword = "checkout";
+    var extra = pm+"==";
+    swal({
+        title: "Confirm Checkout?",
+        text: "",
+        icon: "info",
+        buttons: true,
+        infoMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+            data: { id:id,ROOT_PAGE:ROOT_PAGE,keyword:keyword,extra:extra },
+            url: "",
+            // update url here
+            type: "POST",
+            beforeSend: function() {
+                
+            },
+                headers: {
+                    Accept: "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                success: function (response) {
+                    if(response.text_ == 'Success!'){
+                        swal("Checkout Successful!", {
+                        icon: "success",
+                        });
+                    } else {
+                        swal("Please try again!", {
+                        icon: "error",
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    
+                },
+                complete: function() {
+                    
+                }
+            });
+        } else {
+            
+        }
+    });
+});
+</script>
+
+</body>
+</html>
